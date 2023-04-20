@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Icon : csicone.ico
+X-COMMENT: Main-Class will be added automatically by build
