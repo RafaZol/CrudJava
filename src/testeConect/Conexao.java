@@ -16,7 +16,7 @@ public class Conexao {
     public static Connection getConnPublic() {
         try {
 
-            connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "postgres", "new_db", "5432", "");
+            connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "9711Vickrafa1*", "new_db", "5432", "");
             connPublic.setAutoCommit(false);
         } catch (SQLException ex) {
             ex.printStackTrace();

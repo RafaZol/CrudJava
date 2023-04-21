@@ -169,6 +169,7 @@ public class LogPessoa extends javax.swing.JFrame {
         
         } catch (Exception ex) {
              System.out.println("ERRO " + ex);;
+             ex.printStackTrace();
         }
         
     }

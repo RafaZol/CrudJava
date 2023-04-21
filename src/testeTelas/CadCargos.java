@@ -54,6 +54,7 @@ public class CadCargos extends javax.swing.JDialog {
 
     private void salvar() {
         try {
+        verificaCampos();
             CargoPessoaBean cargoPessoaBean = new CargoPessoaBean();
 
             cargoPessoaBean.setDescricao(tfDescricao.getText());
@@ -125,6 +126,7 @@ public class CadCargos extends javax.swing.JDialog {
     }
 
     private void excluir() {
+        verificaCampos();
         if (tbConsultas.getSelectedRow() != -1) {
             int ls = tbConsultas.convertRowIndexToModel(tbConsultas.getSelectedRow());
             cargoPessoaControl.excluir(cargos.get(ls).getId());
@@ -144,6 +146,14 @@ public class CadCargos extends javax.swing.JDialog {
         btSalvar.setEnabled(false);
         btExcluir.setEnabled(false);
         tbConsultas.requestFocus();
+    }
+
+    private void verificaCampos() {
+        if (tfDescricao.getText().isEmpty() || tfDescricao.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Campo Vazio");
+            System.exit(0);// melhorar implementação !
+            
+        }
     }
 
     @SuppressWarnings("unchecked")
