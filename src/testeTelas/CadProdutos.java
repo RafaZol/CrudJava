@@ -68,31 +68,34 @@ public class CadProdutos extends javax.swing.JDialog {
     }
 
     private void salvar() {
-        try {
-            ProdutosBean produtosBean = new ProdutosBean();
+        if (verificaCampo()) {
+            try {
+                ProdutosBean produtosBean = new ProdutosBean();
 
-            produtosBean.setValidade(tfValidade.getText());
-            produtosBean.setNome(tfNome.getText());
-            produtosBean.setCodBarras(Long.parseLong(tfCodBarras.getText()));
-            produtosBean.setUnidade(tfUnidade.getText());
-            produtosBean.setPro_categoria(listaCategorias.get(cbCategoria.getSelectedIndex()).getId());
+                produtosBean.setValidade(tfValidade.getText());
+                produtosBean.setNome(tfNome.getText());
+                produtosBean.setCodBarras(Long.parseLong(tfCodBarras.getText()));
+                produtosBean.setUnidade(tfUnidade.getText());
+                produtosBean.setPro_categoria(listaCategorias.get(cbCategoria.getSelectedIndex()).getId());
 
-            tfId.setEnabled(false);
+                tfId.setEnabled(false);
 
-            if (tfId.getText().isEmpty()) {
-                produtosBean.setId(produtosControl.buscaUltimoCodigo());
-                produtosControl.cadastrar(produtosBean);
+                if (tfId.getText().isEmpty()) {
+                    produtosBean.setId(produtosControl.buscaUltimoCodigo());
+                    produtosControl.cadastrar(produtosBean);
 
-            } else {
+                } else {
 
-                produtosBean.setId(Integer.parseInt(tfId.getText()));
-                produtosControl.alterar(produtosBean);
+                    produtosBean.setId(Integer.parseInt(tfId.getText()));
+                    produtosControl.alterar(produtosBean);
+                }
+
+                listar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
             }
-
-            listar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique se todos campos foram preenchidos");
         }
     }
 
@@ -196,6 +199,13 @@ public class CadProdutos extends javax.swing.JDialog {
         btExcluir.setEnabled(false);
         cbCategoria.setEnabled(false);
         tbConsultas.requestFocus();
+    }
+
+    private boolean verificaCampo() {
+        if (tfNome.getText().trim().isEmpty() || tfValidade.getText().trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     @SuppressWarnings("unchecked")

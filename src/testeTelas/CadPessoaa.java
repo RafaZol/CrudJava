@@ -430,35 +430,39 @@ public class CadPessoaa extends javax.swing.JDialog {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void salvar() {
-        try {
-            PessoaBean pessoaBean = new PessoaBean();
-            pessoaBean.setNome(tfNome.getText());
-            pessoaBean.setEmail(tfEmail.getText());
-            pessoaBean.setCelular(tfCelular.getText());
-            pessoaBean.setDocumento(tfDocumento.getText());
-            pessoaBean.setIdade(Integer.parseInt(tfIdade.getText()));
-            pessoaBean.setCargo(listaCategorias.get(cbCategoria.getSelectedIndex()).getId());
-            pessoaBean.setPass(tfPass.getText());
-            tfId.setEnabled(false);
+        if (verificaCampos()) {
+            try {
+                PessoaBean pessoaBean = new PessoaBean();
+                pessoaBean.setNome(tfNome.getText());
+                pessoaBean.setEmail(tfEmail.getText());
+                pessoaBean.setCelular(tfCelular.getText());
+                pessoaBean.setDocumento(tfDocumento.getText());
+                pessoaBean.setIdade(Integer.parseInt(tfIdade.getText()));
+                pessoaBean.setCargo(listaCategorias.get(cbCategoria.getSelectedIndex()).getId());
+                pessoaBean.setPass(tfPass.getText());
+                tfId.setEnabled(false);
 
-            if (tfPass.getText().equals(tfPassC.getText())) {
-                String criptografar;
-                criptografar = StringUtil.Cripto(tfPass.getText());
-                pessoaBean.setPass(criptografar);
-            } else {
-                JOptionPane.showMessageDialog(null, "As senha são diferentes");
+                if (tfPass.getText().equals(tfPassC.getText())) {
+                    String criptografar;
+                    criptografar = StringUtil.Cripto(tfPass.getText());
+                    pessoaBean.setPass(criptografar);
+                } else {
+                    JOptionPane.showMessageDialog(null, "As senha são diferentes");
+                }
+                if (tfId.getText().isEmpty()) {
+                    pessoaControl.cadastrar(pessoaBean);
+                } else {
+
+                    pessoaBean.setId(Long.parseLong(tfId.getText()));
+                    pessoaControl.alterar(pessoaBean);
+                }
+
+                listar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
             }
-            if (tfId.getText().isEmpty()) {
-                pessoaControl.cadastrar(pessoaBean);
-            } else {
-
-                pessoaBean.setId(Long.parseLong(tfId.getText()));
-                pessoaControl.alterar(pessoaBean);
-            }
-
-            listar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique se todos campos foram preenchidos");
         }
     }
 
@@ -543,6 +547,13 @@ public class CadPessoaa extends javax.swing.JDialog {
         }
 
         listar();
+    }
+
+    private boolean verificaCampos() {
+        if (tfNome.getText().trim().isEmpty() || tfDocumento.getText().trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     /**

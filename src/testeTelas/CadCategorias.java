@@ -53,26 +53,30 @@ public class CadCategorias extends javax.swing.JDialog {
     }
 
     private void salvar() {
-        try {
-            CategoriaProdBean categoriaProdBean = new CategoriaProdBean();
+        if (verificaCampo()) {
+            try {
+                CategoriaProdBean categoriaProdBean = new CategoriaProdBean();
 
-            categoriaProdBean.setDescricao(tfDescricao.getText());
+                categoriaProdBean.setDescricao(tfDescricao.getText());
 
-            tfId.setEnabled(false);
+                tfId.setEnabled(false);
 
-            if (tfId.getText().isEmpty()) {
-                categoriaProdBean.setId(categoriaProdControl.buscaUltimoCodigo());
-                categoriaProdControl.cadastrar(categoriaProdBean);
+                if (tfId.getText().isEmpty()) {
+                    categoriaProdBean.setId(categoriaProdControl.buscaUltimoCodigo());
+                    categoriaProdControl.cadastrar(categoriaProdBean);
 
-            } else {
+                } else {
 
-                categoriaProdBean.setId(Integer.parseInt(tfId.getText()));
-                categoriaProdControl.alterar(categoriaProdBean);
+                    categoriaProdBean.setId(Integer.parseInt(tfId.getText()));
+                    categoriaProdControl.alterar(categoriaProdBean);
+                }
+
+                listar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
             }
-
-            listar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Campo Vazio");
         }
     }
 
@@ -147,6 +151,13 @@ public class CadCategorias extends javax.swing.JDialog {
         btExcluir.setEnabled(false);
         tbConsultas.requestFocus();
 
+    }
+
+    private boolean verificaCampo() {
+        if (tfDescricao.getText().trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     @SuppressWarnings("unchecked")

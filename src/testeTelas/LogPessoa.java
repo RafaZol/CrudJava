@@ -168,8 +168,14 @@ public class LogPessoa extends javax.swing.JFrame {
        }
         
         } catch (Exception ex) {
+<<<<<<< HEAD
              System.out.println("ERRO " + ex);;
              ex.printStackTrace();
+=======
+             System.out.println(ex);
+             ex.printStackTrace();
+             
+>>>>>>> 16c2e9b (implementing field checker)
         }
         
     }

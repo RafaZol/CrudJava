@@ -16,7 +16,11 @@ public class Conexao {
     public static Connection getConnPublic() {
         try {
 
+<<<<<<< HEAD
             connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "9711Vickrafa1*", "new_db", "5432", "");
+=======
+            connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "postgres*", "new_db", "5432", "");
+>>>>>>> 16c2e9b (implementing field checker)
             connPublic.setAutoCommit(false);
         } catch (SQLException ex) {
             ex.printStackTrace();

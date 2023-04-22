@@ -53,28 +53,38 @@ public class CadCargos extends javax.swing.JDialog {
     }
 
     private void salvar() {
+<<<<<<< HEAD
         try {
         verificaCampos();
             CargoPessoaBean cargoPessoaBean = new CargoPessoaBean();
+=======
+        if (verificaCampos()) {
+            try {
+                CargoPessoaBean cargoPessoaBean = new CargoPessoaBean();
+>>>>>>> 16c2e9b (implementing field checker)
 
-            cargoPessoaBean.setDescricao(tfDescricao.getText());
+                cargoPessoaBean.setDescricao(tfDescricao.getText());
 
-            tfId.setEnabled(false);
+                tfId.setEnabled(false);
 
-            if (tfId.getText().isEmpty()) {
-                cargoPessoaBean.setId(cargoPessoaControl.buscaUltimoCodigo());
-                cargoPessoaControl.cadastrar(cargoPessoaBean);
+                if (tfId.getText().isEmpty()) {
+                    cargoPessoaBean.setId(cargoPessoaControl.buscaUltimoCodigo());
+                    cargoPessoaControl.cadastrar(cargoPessoaBean);
 
-            } else {
+                } else {
 
-                cargoPessoaBean.setId(Integer.parseInt(tfId.getText()));
-                cargoPessoaControl.alterar(cargoPessoaBean);
+                    cargoPessoaBean.setId(Integer.parseInt(tfId.getText()));
+                    cargoPessoaControl.alterar(cargoPessoaBean);
+                }
+
+                listar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
             }
-
-            listar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Campo Vazio");
         }
+
     }
 
     private void mostrar(List<CargoPessoaBean> list) {
@@ -148,12 +158,20 @@ public class CadCargos extends javax.swing.JDialog {
         tbConsultas.requestFocus();
     }
 
+<<<<<<< HEAD
     private void verificaCampos() {
         if (tfDescricao.getText().isEmpty() || tfDescricao.getText() == null) {
             JOptionPane.showMessageDialog(null, "Campo Vazio");
             System.exit(0);// melhorar implementação !
             
         }
+=======
+    private boolean verificaCampos() {
+        if (tfDescricao.getText().trim().isEmpty()) {
+            return false;
+        }
+        return true;
+>>>>>>> 16c2e9b (implementing field checker)
     }
 
     @SuppressWarnings("unchecked")
