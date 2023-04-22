@@ -12,7 +12,7 @@ import java.awt.Toolkit;
  * @author Rafael
  */
 public class LogPessoa extends javax.swing.JFrame {
-    
+
     private final PessoaControl pessoaControl = new PessoaControl();
 
     public LogPessoa() {
@@ -20,7 +20,7 @@ public class LogPessoa extends javax.swing.JFrame {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.getImage("mercado.png");
         this.setIconImage(img);
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -132,11 +132,11 @@ public class LogPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarActionPerformed
-       enviar();     
+        enviar();
     }//GEN-LAST:event_btEnviarActionPerformed
 
     private void btEnviarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btEnviarKeyPressed
-     
+
 
     }//GEN-LAST:event_btEnviarKeyPressed
 
@@ -150,35 +150,29 @@ public class LogPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfPassKeyPressed
 
-    public void enviar(){
-        
-        try{
-        String descriptografar;
-       descriptografar  = StringUtil.Cripto(tfPass.getText());
-       if(pessoaControl.verificarCredenciais(tfUser.getText(), descriptografar)){
-            MenPessoas menu = new MenPessoas();
-            menu.pack();
-            menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     
-            menu.setLocationRelativeTo(null);
-            this.dispose();
-            menu.setVisible(true);
-            
-       } else {
-           JOptionPane.showMessageDialog(null, "Dados Incorretos");
-       }
-        
+    public void enviar() {
+
+        try {
+            String descriptografar;
+            descriptografar = StringUtil.Cripto(tfPass.getText());
+            if (pessoaControl.verificarCredenciais(tfUser.getText(), descriptografar)) {
+                MenPessoas menu = new MenPessoas();
+                menu.pack();
+                menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                menu.setLocationRelativeTo(null);
+                this.dispose();
+                menu.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados Incorretos");
+            }
+
         } catch (Exception ex) {
-<<<<<<< HEAD
-             System.out.println("ERRO " + ex);;
-             ex.printStackTrace();
-=======
-             System.out.println(ex);
-             ex.printStackTrace();
-             
->>>>>>> 16c2e9b (implementing field checker)
+            System.out.println("ERRO " + ex);;
         }
-        
+
     }
+
     public static void main(String args[]) {
 
         try {

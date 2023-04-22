@@ -15,7 +15,7 @@ public class MenPessoas extends javax.swing.JFrame {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.getImage("mercado.png");
         this.setIconImage(img);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -165,9 +165,9 @@ public class MenPessoas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int escolha = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Sair", JOptionPane.YES_NO_OPTION);
 
-            if (escolha == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
+        if (escolha == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

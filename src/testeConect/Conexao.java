@@ -5,22 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 /**
  *
  * @author Rafael
  */
 public class Conexao {
+
     private static Connection connPublic;
 
     public static Connection getConnPublic() {
         try {
 
-<<<<<<< HEAD
-            connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "9711Vickrafa1*", "new_db", "5432", "");
-=======
             connPublic = Conexao.conectar("postgresql", "localhost", "postgres", "postgres*", "new_db", "5432", "");
->>>>>>> 16c2e9b (implementing field checker)
+
             connPublic.setAutoCommit(false);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -29,7 +26,6 @@ public class Conexao {
         }
         return connPublic;
     }
-    
 
     public static void setConnPublic(Connection connPublic) {
         Conexao.connPublic = connPublic;
@@ -55,6 +51,5 @@ public class Conexao {
         }
         Class.forName(tp);
     }
-
 
 }

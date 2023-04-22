@@ -53,15 +53,9 @@ public class CadCargos extends javax.swing.JDialog {
     }
 
     private void salvar() {
-<<<<<<< HEAD
-        try {
-        verificaCampos();
-            CargoPessoaBean cargoPessoaBean = new CargoPessoaBean();
-=======
         if (verificaCampos()) {
             try {
                 CargoPessoaBean cargoPessoaBean = new CargoPessoaBean();
->>>>>>> 16c2e9b (implementing field checker)
 
                 cargoPessoaBean.setDescricao(tfDescricao.getText());
 
@@ -158,20 +152,11 @@ public class CadCargos extends javax.swing.JDialog {
         tbConsultas.requestFocus();
     }
 
-<<<<<<< HEAD
-    private void verificaCampos() {
-        if (tfDescricao.getText().isEmpty() || tfDescricao.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Campo Vazio");
-            System.exit(0);// melhorar implementação !
-            
-        }
-=======
     private boolean verificaCampos() {
         if (tfDescricao.getText().trim().isEmpty()) {
             return false;
         }
         return true;
->>>>>>> 16c2e9b (implementing field checker)
     }
 
     @SuppressWarnings("unchecked")
